@@ -120,7 +120,20 @@ $("loginForm").onsubmit = async e => {
     await signInWithEmailAndPassword(auth, $("email").value.trim(), $("password").value);
     location.replace("admin.html");
   } catch (err) {
-    msg("Email or password is incorrect.", "err");
+    const m = {
+      "auth/invalid-credential": "Email or password is incorrect.",
+      "auth/invalid-email": "That email address isn't valid.",
+      "auth/user-disabled": "This account is disabled in Firebase.",
+      "auth/too-many-requests": "Too many attempts. Wait a few minutes and try again.",
+      "auth/network-request-failed": "Network error. Check your connection.",
+      "auth/operation-not-allowed": "Email/Password sign-in is not enabled in Firebase (Authentication > Sign-in method).",
+      "auth/api-key-not-valid.-please-pass-a-valid-api-key.": "The apiKey in firebaseConfig is wrong. Paste your real Firebase config.",
+      "auth/invalid-api-key": "The apiKey in firebaseConfig is wrong. Paste your real Firebase config.",
+      "auth/configuration-not-found": "Firebase Authentication isn't set up for this project yet (click Get started in Authentication).",
+      "auth/unauthorized-domain": "This domain isn't authorized. Add it in Authentication > Settings > Authorized domains."
+    };
+    console.error(err.code, err);
+    msg((m[err.code] || "Sign-in failed.") + " (" + err.code + ")", "err");
     $("submit").disabled = false;
   }
 };
