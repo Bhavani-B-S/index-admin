@@ -1,207 +1,196 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEXORA Admin</title><meta name="robots" content="noindex,nofollow">
-<style>:root{--bg:#050912;--p:#0F1930;--p2:#0A1120;--l:rgba(148,168,210,.16);--b:#2F86FF;--g:#C6A15B;--t:#F3F6FC;--m:#8A96B3;--r:12px}
-*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--t);font:14px/1.5 Inter,system-ui,sans-serif;display:flex;min-height:100vh}
-a{color:inherit;text-decoration:none}.muted{color:var(--m)}.sp{flex:1}
-aside{width:236px;background:var(--p2);border-right:1px solid var(--l);padding:18px 12px;position:fixed;inset:0 auto 0 0;overflow:auto;z-index:20;transition:.25s}
-.logo{font:700 18px 'Space Grotesk',sans-serif;padding:4px 10px 16px}.logo span,h1 span{color:var(--g)}
-nav a{display:block;padding:9px 12px;border-radius:8px;color:var(--m);cursor:pointer}nav a:hover{background:#ffffff0a;color:var(--t)}nav a.on{background:rgba(47,134,255,.16);color:#fff}
-.main{margin-left:236px;flex:1;min-width:0}header{display:flex;gap:12px;align-items:center;padding:12px 24px;border-bottom:1px solid var(--l);position:sticky;top:0;background:#050912ee;backdrop-filter:blur(10px);z-index:10}
-main{padding:24px;max-width:1100px}.ic{display:none;background:none;border:0;color:var(--t);font-size:18px;cursor:pointer;position:relative}#bell{display:block}#badge{position:absolute;top:-6px;right:-8px;background:var(--b);border-radius:9px;font-size:10px;padding:0 5px}#badge:empty{display:none}
-.card{background:var(--p);border:1px solid var(--l);border-radius:var(--r);padding:20px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px}.stat b{display:block;font:700 28px 'Space Grotesk',sans-serif}
-.btn{background:var(--b);color:#fff;border:0;border-radius:8px;padding:9px 16px;cursor:pointer;font:600 13px inherit}.btn.ghost{background:none;border:1px solid var(--l);color:var(--t)}.btn.sm{padding:5px 10px;font-size:12px}.btn.red{background:#c0392b}.btn:disabled{opacity:.5}
-label{display:block;margin-bottom:14px;font-weight:500;color:var(--m);font-size:12px}input,textarea,select{width:100%;margin-top:5px;background:var(--bg);border:1px solid var(--l);border-radius:8px;color:var(--t);padding:9px 11px;font:inherit}textarea{min-height:80px;resize:vertical}
-input:focus,textarea:focus{outline:2px solid var(--b)}input[type=checkbox]{width:auto;margin:0 8px 0 0}.chk{display:flex;align-items:center}
-table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid var(--l);text-align:left}th{color:var(--m);font-weight:500;font-size:12px}tr.un td{font-weight:600}
-.tools{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}.tools input,.tools select{margin:0;max-width:240px}.acts{display:flex;gap:6px;flex-wrap:wrap}
-.chip{padding:2px 9px;border-radius:99px;font-size:11px;background:rgba(47,134,255,.18)}.chip.off{background:#ffffff14;color:var(--m)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.img{display:flex;gap:12px;align-items:center;margin:5px 0 14px}.img img{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--l);background:var(--bg)}
-#modal{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:flex-start;justify-content:center;overflow:auto;padding:30px 12px}#modal.on{display:flex}.mbox{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:24px;width:min(640px,100%)}
-#toasts{position:fixed;bottom:20px;right:20px;z-index:99}.toast{background:var(--p);border:1px solid var(--l);border-left:3px solid var(--b);padding:10px 16px;margin-top:8px;border-radius:8px}.toast.e{border-left-color:#e74c3c}
-.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.mg .card{padding:10px;margin:0}.mg img{width:100%;height:100px;object-fit:cover;border-radius:8px}.empty{text-align:center;padding:40px;color:var(--m)}
-.login{align-items:center;justify-content:center}.login-card{width:min(380px,92vw)}.login h1{font:700 24px 'Space Grotesk',sans-serif;margin-bottom:4px}.err{color:#e74c3c;margin-top:10px}
-@media(max-width:860px){aside{transform:translateX(-100%)}aside.open{transform:none}.main{margin-left:0}.ic{display:block}.two{grid-template-columns:1fr}#me{display:none}}
-
-body{display:block}#shell{display:flex;min-height:100vh}
-</style></head><body>
-<div id="shell"><aside id="side"><div class="logo">NEXORA <span>Admin</span></div><nav id="nav"></nav></aside>
-<div class="main"><header><button id="burger" class="ic">☰</button><h2 id="title"></h2><div class="sp"></div>
-<a id="view" class="btn ghost" target="_blank">View Website ↗</a><button class="ic" id="bell" title="Unread enquiries">🔔<b id="badge"></b></button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · NEXORA</title>
+<style>
+:root{--bg:#0a1330;--panel:#101b44;--line:#223062;--text:#e8ecf8;--muted:#9aa6cf;--gold:#d4a73a;--danger:#e5646b;--ok:#4fbf8b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--gold)}
+button,input,textarea{font:inherit}
+input,textarea{width:100%;padding:.65rem .8rem;background:#0b1538;border:1px solid var(--line);border-radius:8px;color:var(--text)}
+input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+label{display:block;margin:.9rem 0 .3rem;color:var(--muted);font-size:.9rem}
+.btn{display:inline-block;padding:.6rem 1.1rem;border:0;border-radius:8px;background:var(--gold);color:#1a1405;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn.danger{background:transparent;border:1px solid var(--danger);color:var(--danger)}
+.btn:disabled{opacity:.6;cursor:wait}
+.msg{min-height:1.4em;margin-top:.8rem;font-size:.92rem}
+.msg.err{color:var(--danger)}.msg.ok{color:var(--ok)}
+/* login */
+.center{min-height:100vh;display:grid;place-items:center;padding:1rem}
+.card{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:2rem}
+.card h1{margin:0 0 .25rem;font-size:1.5rem}
+.card p.sub{margin:0 0 1rem;color:var(--muted)}
+.row{display:flex;gap:.5rem}
+.linkbtn{background:none;border:0;color:var(--gold);cursor:pointer;padding:0;text-decoration:underline}
+/* dashboard */
+header.top{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--line);background:var(--panel)}
+header.top strong{font-size:1.1rem}
+main{max-width:960px;margin:0 auto;padding:1.5rem}
+nav.tabs{display:flex;gap:.5rem;margin-bottom:1.25rem}
+nav.tabs button{background:none;border:1px solid var(--line);color:var(--muted);padding:.5rem 1rem;border-radius:8px;cursor:pointer}
+nav.tabs button[aria-selected=true]{background:var(--gold);color:#1a1405;border-color:var(--gold);font-weight:600}
+.item{display:flex;gap:1rem;justify-content:space-between;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1rem;margin-bottom:.75rem}
+.item h3{margin:0 0 .2rem;font-size:1.05rem}
+.item p{margin:.1rem 0;color:var(--muted);font-size:.92rem;overflow-wrap:anywhere}
+.tag{font-size:.78rem;padding:.1rem .5rem;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.actions{display:flex;gap:.4rem;flex-wrap:wrap}
+form.edit{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.empty{color:var(--muted);padding:1.5rem;text-align:center;border:1px dashed var(--line);border-radius:10px}
+@media(max-width:600px){.item{flex-direction:column}}
+@media(prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <strong>NEXORA Admin</strong>
+  <div><span id="who" class="tag"></span> <button class="btn ghost" id="logout">Sign out</button></div>
 </header>
-<main id="area"><div class="muted">Loading…</div></main></div></div><div id="modal"></div><div id="toasts"></div>
+
+<main id="app" hidden>
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="projects">Projects</button>
+    <button role="tab" aria-selected="false" data-tab="reviews">Reviews</button>
+  </nav>
+
+  <section id="projects">
+    <form class="edit" id="pform">
+      <h2 id="ptitle" style="margin:0">Add project</h2>
+      <input type="hidden" id="pid">
+      <label for="name">Project name</label><input id="name" required>
+      <label for="desc">Description</label><textarea id="desc" rows="3"></textarea>
+      <label for="url">Live link</label><input id="url" type="url" placeholder="https://">
+      <label for="img">Image link (optional)</label><input id="img" type="url" placeholder="https://">
+      <label><input type="checkbox" id="visible" checked style="width:auto"> Show on website</label>
+      <div class="actions" style="margin-top:1rem">
+        <button class="btn" id="psave">Save project</button>
+        <button type="button" class="btn ghost" id="pcancel" hidden>Cancel</button>
+      </div>
+      <div class="msg" id="pmsg" role="status" aria-live="polite"></div>
+    </form>
+    <div id="plist"></div>
+  </section>
+
+  <section id="reviews" hidden><div id="rlist"></div></section>
+</main>
+
+<div class="center" id="denied" hidden>
+  <div class="card">
+    <h1>No admin access</h1>
+    <p class="sub">This account isn't on the admin list. Sign in with an admin account.</p>
+    <button class="btn" id="deniedOut">Sign out</button>
+  </div>
+</div>
+
 <script type="module">
-// Initial content copied from the existing NEXORA customer website.
-const L=(a)=>a.map(([title,desc])=>({title,desc}));
-const SEED={single:{
- 'settings/general':{company:'NEXORA DIGI SOLUTIONS',phone:'636172894',email:'nexoradigisolutions@gmail.com',address:'#123, 1st Main Road, Bagalagunte, Bengaluru - 560073',website:'www.nexoradigisolutions.in'},
- 'home/content':{visible:true,badge:'ERP & Business Digital Solutions',heading:'Simplify today.',heading2:'Scale',highlight:'tomorrow.',description:'Nexora Digi Solutions transforms how businesses operate — with intelligent ERP, automation and digital platforms built to simplify what slows you down now, and scale with you as you grow.',cta1Text:'Get Started',cta1Url:'#contact',cta2Text:'Explore Solutions',cta2Url:'#solutions'},
- 'about/content':{heading:'Technology that works the way your business already does',p1:'Nexora Digi Solutions is a technology partner for growing businesses — we step in where operations feel scattered across tools and manual processes, and bring it together into one clear system.',p2:'Our work spans ERP, automation, custom software and IT consulting, but the goal never changes: take the friction out of daily operations and put the right technology behind future growth.'},
- 'contact/settings':{heading:'Get in touch',text:"Share a few details about your business and we'll get back to you shortly.",founderLabel:'Founder',founderName:'Prajwal P',mapLabel:'Map — Bagalagunte, Bengaluru',serviceLabel:'Service required',messagePlaceholder:"Tell us a little about what you're looking to solve",submitText:'Submit',responseNote:'We typically respond within one business day.'},
- 'settings/ylteam':{visible:true,badge:'Web Development Team',title:'YL Developers',subtitle:'Websites and web applications built for our clients'},
- 'settings/footer':{description:'ERP and business digital solutions for companies that want to simplify today and scale tomorrow.'},
- 'settings/seo':{title:'NEXORA DIGI SOLUTIONS | ERP & Business Digital Solutions',description:'NEXORA DIGI SOLUTIONS delivers ERP, business automation, digital marketing, digital transformation and IT consulting for growing businesses. Simplify today. Scale tomorrow.'},
- 'settings/theme':{maintenance:false,animations:true,smooth:true}},
-lists:{
- services:L([['ERP Solutions','Unified systems for finance, inventory, sales and operations — one source of truth across the business.'],['Business Automation','Automate approvals, reporting and repetitive tasks so your team can focus on decisions, not data entry.'],['Digital Transformation','A clear, phased path from legacy processes to modern digital operations — with minimal disruption.'],['IT Consulting & Support','Independent guidance on infrastructure, tooling and technology decisions, backed by responsive support.'],['Custom Software Solutions','Purpose-built applications for the workflows off-the-shelf software was never designed to handle.'],['Website & Web Application Development','Fast, responsive websites and web applications built to represent and run your business well online.'],['Business Process Solutions',"Mapping, redesigning and documenting operational processes so growth doesn't mean more chaos."],['Digital Marketing','SEO, social media, paid ads and content — across Google, Meta, Instagram, LinkedIn and every platform your customers actually use.']]),
- ylprojects:L([['Nexora Digi Solutions',''],['V Mart','']]),
- industries:L([['Retail','Inventory, billing and store operations in sync.'],['Education','Admissions, records and communication in one place.'],['Healthcare','Patient records and scheduling, kept organised.'],['Manufacturing','Production tracking from raw material to dispatch.'],['Professional Services','Client work, billing and time tracked with clarity.'],['Startups & SMEs','Lean systems that scale as the business does.']]),
- team:[['Web Development Team','Builds and maintains the ERP systems, custom software, websites and web applications behind every project.'],['Marketing Team','Runs SEO, social media, paid campaigns and content across every platform to help clients get found and grow.'],['Management Team','Oversees planning, timelines and client communication so every engagement stays on track end to end.'],['Support & Consulting Team','Handles IT consulting, ongoing support and troubleshooting well after a system goes live.']].map(([title,desc])=>({title,desc})),
- why:L([['Business-focused technology','Every recommendation is judged by business impact first.'],['Customised solutions','Configured around how your team already works.'],['Scalable architecture','Systems built to handle more, not be replaced later.'],['Modern technology','Current tools and practices, applied practically.'],['Transparent approach','Clear timelines, clear pricing, no surprises.'],['Long-term support','We stay involved well past the initial rollout.']]),
- projects:[{title:'V Mart',tag:'Retail · Web App',desc:'An online grocery shopping website for V Mart supermarket in Tumakuru, Karnataka, with a full shop, cart and checkout flow and Cash on Delivery.',chips:['Online shop','Cart & checkout','Cash on Delivery'],url:'https://vmart-afad3.web.app/',featured:true},{title:'Nexora Digi Solutions',tag:'Corporate · Website',desc:'The company website: a responsive corporate site presenting our ERP, automation and digital platform services, with contact and client ratings built in.',chips:['Responsive design','Contact form','Client ratings']}]
-}};
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* ===== 1. PASTE YOUR FIREBASE WEB CONFIG HERE (public identifiers, not secrets) ===== */
-const FILE_CFG={apiKey:"",authDomain:"",projectId:"",storageBucket:"",messagingSenderId:"",appId:""};
-const firebaseConfig=FILE_CFG.apiKey?FILE_CFG:JSON.parse(localStorage.getItem("nxcfg")||"{}"),cfgOk=!!(firebaseConfig.apiKey&&firebaseConfig.projectId);
-const SITE_URL="index.html"; /* URL of your live customer website, used by "View Website" */
+// Paste your Firebase web app config here (Firebase Console > Project settings > Your apps > Web)
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, getDoc, collection, getDocs, addDoc, setDoc, updateDoc, deleteDoc, query, orderBy, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* ===== Firebase (live) or in-memory DEMO mode when no config is set ===== */
-const DEMO=!cfgOk;
-const V='10.12.2',B='https://www.gstatic.com/firebasejs/'+V+'/';
-let FB;
-if(!DEMO){const [a,f,g]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-firestore.js'),import(B+'firebase-storage.js')]);FB={...a,...f,...g}}
-else{
- const store=new Map(),ts=()=>({seconds:Date.now()/1000,toDate:()=>new Date()}),rid=()=>Math.random().toString(36).slice(2,12);
- const put=(p,d,m)=>store.set(p,m&&store.has(p)?{...store.get(p),...d}:{...d});
- const kids=c=>[...store.entries()].filter(([k])=>k.startsWith(c+'/')&&!k.slice(c.length+1).includes('/'));
- for(const [p,d] of Object.entries(SEED.single))put(p,d);
- for(const [c,arr] of Object.entries(SEED.lists))arr.forEach((d,n)=>put(c+'/'+rid(),{...d,active:true,order:n,createdAt:ts(),updatedAt:ts()}));
- [['Rahul Sharma','rahul@example.com','9876543210','Sharma Traders','ERP Solutions','We need an ERP for inventory and billing across 3 stores.',0,2],['Anita Rao','anita@example.com','9123456780','Rao Clinics','Website Development','Looking for a website with appointment booking.',0,26],['Kiran Patel','kiran@example.com','9988776655','','Digital Marketing','Interested in SEO and Google Ads packages.',1,70]].forEach(([name,email,phone,company,service,message,read,h])=>put('enquiries/'+rid(),{name,email,phone,company,service,message,read:!!read,createdAt:{seconds:Date.now()/1000-h*3600,toDate:()=>new Date(Date.now()-h*3600e3)}}));
- FB={initializeApp:()=>({}),getFirestore:()=>({}),getStorage:()=>({}),
-  collection:(_,c)=>({col:c}),
-  doc:(_,...a)=>({path:a.join('/')}),
-  serverTimestamp:ts,
-  getDoc:async r=>({exists:()=>store.has(r.path),data:()=>store.has(r.path)?{...store.get(r.path)}:undefined,id:r.path.split('/').pop()}),
-  getDocs:async c=>{const l=kids(c.col).map(([k,v])=>({id:k.split('/').pop(),data:()=>({...v})}));return{docs:l,size:l.length,empty:!l.length}},
-  setDoc:async(r,d,o)=>{put(r.path,d,o&&o.merge)},
-  addDoc:async(c,d)=>{const id=rid();put(c.col+'/'+id,d);return{id}},
-  updateDoc:async(r,d)=>{put(r.path,d,true)},
-  deleteDoc:async r=>{store.delete(r.path)},
-  ref:(_,p)=>({path:p}),
-  uploadBytes:async(r,f)=>{store.set('__blob/'+r.path,URL.createObjectURL(f))},
-  getDownloadURL:async r=>store.get('__blob/'+r.path),
-  deleteObject:async()=>{}};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const out = async () => { await signOut(auth); location.replace("login.html"); };
+$("logout").onclick = out; $("deniedOut").onclick = out;
+
+// ---- Auth guard: signed in AND listed in admins/{uid} ----
+onAuthStateChanged(auth, async user => {
+  if (!user) return location.replace("login.html");
+  $("who").textContent = user.email;
+  let ok = false;
+  try { ok = (await getDoc(doc(db, "admins", user.uid))).exists(); } catch {}
+  if (!ok) { $("denied").hidden = false; return; }
+  $("app").hidden = false;
+  loadProjects(); loadReviews();
+});
+
+// ---- Tabs ----
+document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => {
+  document.querySelectorAll("[data-tab]").forEach(x => x.setAttribute("aria-selected", x === b));
+  $("projects").hidden = b.dataset.tab !== "projects";
+  $("reviews").hidden = b.dataset.tab !== "reviews";
+});
+
+// ---- Projects ----
+let projects = [];
+async function loadProjects() {
+  const snap = await getDocs(query(collection(db, "projects"), orderBy("createdAt", "desc")));
+  projects = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  $("plist").innerHTML = projects.length ? projects.map(p => `
+    <div class="item"><div>
+      <h3>${esc(p.name)} <span class="tag">${p.visible ? "Visible" : "Hidden"}</span></h3>
+      <p>${esc(p.desc)}</p><p>${esc(p.url)}</p></div>
+      <div class="actions">
+        <button class="btn ghost" data-edit="${p.id}">Edit</button>
+        <button class="btn danger" data-del="${p.id}">Delete</button>
+      </div></div>`).join("")
+    : `<div class="empty">No projects yet. Add your first project above.</div>`;
 }
-const {initializeApp,getFirestore,collection,doc,getDoc,getDocs,setDoc,addDoc,updateDoc,deleteDoc,serverTimestamp,getStorage,ref,uploadBytes,getDownloadURL,deleteObject}=FB;
-const app=initializeApp(DEMO?{}:firebaseConfig),db=getFirestore(app),st=getStorage(app);
-const $=(s,r=document)=>r.querySelector(s),esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const toast=(m,e)=>{const d=document.createElement('div');d.className='toast'+(e?' e':'');d.textContent=m;$('#toasts').append(d);setTimeout(()=>d.remove(),3200)};
-const F=(k,l,t='text')=>({k,l,t});
-const fmt=t=>t?.toDate?t.toDate().toLocaleString():'';
-
-/* ---- schema: single documents ---- */
-const SINGLE={
- general:['Website Settings','settings/general',[F('company','Company name'),F('logo','Logo','image'),F('favicon','Favicon','image'),F('phone','Phone'),F('email','Email'),F('address','Address','area'),F('website','Website URL'),F('whatsapp','WhatsApp number'),F('instagram','Instagram URL'),F('facebook','Facebook URL'),F('linkedin','LinkedIn URL'),F('youtube','YouTube URL')]],
- home:['Home / Hero','home/content',[F('visible','Hero visible','bool'),F('badge','Eyebrow / badge text'),F('heading','Heading line 1'),F('heading2','Heading line 2 (before highlight)'),F('highlight','Highlighted word'),F('description','Description','area'),F('cta1Text','Primary CTA text'),F('cta1Url','Primary CTA URL'),F('cta2Text','Secondary CTA text'),F('cta2Url','Secondary CTA URL'),F('image','Hero image','image')]],
- about:['About','about/content',[F('heading','Section heading'),F('subtitle','Subtitle'),F('p1','Main description','area'),F('p2','Additional description','area'),F('p3','Extra paragraph','area'),F('image','Image','image'),F('stats','Statistics (one per line: value | label)','lines'),F('btnText','Button text'),F('btnUrl','Button URL')]],
- contact:['Contact','contact/settings',[F('heading','Section heading (e.g. Get in touch)'),F('text','Section text','area'),F('founderLabel','Person label (e.g. Founder)'),F('founderName','Person name'),F('hours','Business hours'),F('mapLabel','Map placeholder text'),F('mapUrl','Google Maps EMBED URL (blank = placeholder)'),F('formTitle','Form heading (optional)'),F('serviceLabel','“Service required” label'),F('serviceOptions','Service dropdown options (one per line, blank = use Services list)','lines'),F('messagePlaceholder','Message box placeholder'),F('submitText','Submit button text'),F('responseNote','Note under the button')]],
- ylteam:['YL Developers Strip','settings/ylteam',[F('visible','Strip visible','bool'),F('badge','Badge text'),F('title','Title'),F('subtitle','Subtitle / tagline'),F('url','Title link URL (optional)')]],
- footer:['Footer','settings/footer',[F('description','Footer company description','area'),F('privacyUrl','Privacy Policy URL'),F('termsUrl','Terms of Service URL'),F('copyright','Copyright text')]],
- seo:['SEO','settings/seo',[F('title','SEO title'),F('description','SEO description','area'),F('keywords','SEO keywords'),F('ogImage','Open Graph image','image')]],
- theme:['Global Controls','settings/theme',[F('maintenance','Maintenance mode','bool'),F('primary','Primary color (hex, blank = default)'),F('accent','Accent color (hex, blank = default)'),F('animations','Animations enabled','bool'),F('smooth','Smooth scrolling','bool')]]
+$("plist").onclick = async e => {
+  const edit = e.target.dataset.edit, del = e.target.dataset.del;
+  if (edit) {
+    const p = projects.find(x => x.id === edit);
+    $("pid").value = p.id; $("name").value = p.name || ""; $("desc").value = p.desc || "";
+    $("url").value = p.url || ""; $("img").value = p.img || ""; $("visible").checked = !!p.visible;
+    $("ptitle").textContent = "Edit project"; $("pcancel").hidden = false; scrollTo({top:0});
+  }
+  if (del && confirm("Delete this project? This can't be undone.")) {
+    await deleteDoc(doc(db, "projects", del)); loadProjects();
+  }
 };
-/* ---- schema: lists [title, collection, fields, activeKey] ---- */
-const common=[F('features','Features (one per line)','lines'),F('btnText','Button text'),F('btnUrl','Button URL')];
-const LIST={
- services:['Services','services',[F('title','Title'),F('desc','Short description','area'),F('full','Full description','area'),F('icon','Icon (SVG markup, blank = keep current)','area'),F('image','Image','image'),...common],'active'],
- solutions:['Solutions','solutions',[F('title','Title'),F('desc','Description','area'),F('icon','Icon (SVG)','area'),F('image','Image','image'),...common],'active'],
- ylprojects:['YL Developers – Projects','ylprojects',[F('title','Project name (shown in the scrolling strip)'),F('desc','Short note (optional)'),F('url','Link URL (optional)'),F('logo','Logo (optional)','image')],'active'],
- industries:['Industries','industries',[F('title','Name'),F('desc','Description','area'),F('icon','Icon (SVG)','area'),F('image','Image','image')],'active'],
- projects:['Our Work','projects',[F('title','Project name'),F('tag','Category / tag'),F('desc','Description','area'),F('image','Project image','image'),F('gallery','Gallery image URLs (one per line)','lines'),F('chips','Features / chips (one per line)','lines'),F('tech','Technologies used (one per line)','lines'),F('client','Client name'),F('url','Project URL'),F('caseUrl','Case study URL'),F('featured','Featured','bool')],'active'],
- team:['Team','team',[F('title','Name / team'),F('role','Designation'),F('image','Profile image','image'),F('desc','Bio','area'),F('email','Email'),F('phone','Phone'),F('linkedin','LinkedIn'),F('instagram','Instagram'),F('other','Other link')],'active'],
- why:['Why Nexora','why',[F('title','Title'),F('desc','Description','area'),F('icon','Icon (SVG)','area')],'active'],
- ratings:['Ratings / Testimonials','ratings',[F('name','Customer name'),F('company','Company'),F('image','Profile image','image'),F('rating','Rating (1-5)','number'),F('message','Review','area')],'approved']
+function resetForm() { $("pform").reset(); $("pid").value = ""; $("ptitle").textContent = "Add project"; $("pcancel").hidden = true; }
+$("pcancel").onclick = resetForm;
+$("pform").onsubmit = async e => {
+  e.preventDefault();
+  const data = { name: $("name").value.trim(), desc: $("desc").value.trim(), url: $("url").value.trim(),
+                 img: $("img").value.trim(), visible: $("visible").checked };
+  $("psave").disabled = true;
+  try {
+    if ($("pid").value) await updateDoc(doc(db, "projects", $("pid").value), { ...data, updatedAt: serverTimestamp() });
+    else await addDoc(collection(db, "projects"), { ...data, createdAt: serverTimestamp() });
+    $("pmsg").textContent = "Saved."; $("pmsg").className = "msg ok";
+    resetForm(); loadProjects();
+  } catch { $("pmsg").textContent = "Couldn't save. Check your connection and permissions."; $("pmsg").className = "msg err"; }
+  $("psave").disabled = false;
 };
-const MENU=[['dashboard','Dashboard'],['general','Website Settings'],['home','Home'],['about','About'],['services','Services'],['solutions','Solutions'],['industries','Industries'],['projects','Our Work'],['team','Team'],['why','Why Nexora'],['ratings','Ratings / Testimonials'],['contact','Contact'],['footer','Footer'],['ylteam','YL Developers Strip'],['ylprojects','YL Developers Projects'],['enquiries','Messages / Enquiries'],['media','Media Library'],['seo','SEO'],['theme','Global Controls']];
 
-/* ---- form helpers ---- */
-const formHtml=(fs,d={})=>fs.map(f=>{const v=d[f.k];
- if(f.t==='bool')return`<label class="chk"><input type="checkbox" data-k="${f.k}" ${v!==false&&v!==undefined||(v===undefined&&f.k!=='maintenance')?'checked':''}>${f.l}</label>`;
- if(f.t==='image')return`<label>${f.l}<div class="img"><img src="${esc(v||'')}" onerror="this.style.visibility='hidden'" onload="this.style.visibility=''"><input type="file" accept="image/*" data-up="${f.k}"><input type="hidden" data-k="${f.k}" value="${esc(v||'')}"><button type="button" class="btn ghost sm" data-rm="${f.k}">Remove</button></div></label>`;
- const val=f.t==='lines'?(v||[]).join('\n'):v??'';
- return f.t==='area'||f.t==='lines'?`<label>${f.l}<textarea data-k="${f.k}">${esc(val)}</textarea></label>`:`<label>${f.l}<input data-k="${f.k}" type="${f.t==='number'?'number':'text'}" value="${esc(val)}"></label>`}).join('');
-const collect=(fs,root)=>{const o={};fs.forEach(f=>{const e=$(`[data-k="${f.k}"]`,root);o[f.k]=f.t==='bool'?e.checked:f.t==='number'?+e.value||0:f.t==='lines'?e.value.split('\n').map(s=>s.trim()).filter(Boolean):e.value.trim()});return o};
-function wireUploads(root){
- root.querySelectorAll('[data-up]').forEach(i=>i.onchange=async()=>{const f=i.files[0];if(!f)return;i.disabled=true;
-  try{const r=await uploadImg(f);$(`[data-k="${i.dataset.up}"]`,root).value=r;i.closest('.img').querySelector('img').src=r;toast('Image uploaded')}catch(e){toast('Upload failed: '+e.message,1)}i.disabled=false});
- root.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{$(`[data-k="${b.dataset.rm}"]`,root).value='';b.closest('.img').querySelector('img').src=''})}
-async function uploadImg(file){const path=`uploads/${Date.now()}-${file.name.replace(/[^\w.-]/g,'_')}`,r=ref(st,path);
- await uploadBytes(r,file);const url=await getDownloadURL(r);await addDoc(collection(db,'media'),{name:file.name,url,path,createdAt:serverTimestamp()});return url}
-const confirmBox=m=>confirm(m);
-const modal=h=>{const m=$('#modal');m.innerHTML=`<div class="mbox">${h}</div>`;m.classList.add('on');m.onclick=e=>{if(e.target===m)closeM()};return m};
-const closeM=()=>{$('#modal').classList.remove('on')};
-const touch=async(p,d)=>setDoc(doc(db,...p.split('/')),{...d,updatedAt:serverTimestamp()},{merge:true});
-
-/* ---- views ---- */
-async function viewSingle(key){const [title,path,fs]=SINGLE[key];const snap=await getDoc(doc(db,...path.split('/')));
- $('#area').innerHTML=`<div class="card"><div class="two">${formHtml(fs,snap.data()||{})}</div><button class="btn" id="save">Save changes</button> <span class="muted">Updated: ${fmt(snap.data()?.updatedAt)||'never'}</span></div>`;
- if(key==='contact')$('#area').insertAdjacentHTML('afterbegin','<div class="card" style="margin-bottom:14px"><span class="muted">Phone, email, address and website shown on this section are edited in </span><a href="#general">Website Settings</a>.</div>');
- wireUploads($('#area'));$('#save').onclick=async()=>{$('#save').disabled=true;try{await touch(path,collect(fs,$('#area')));toast('Saved — live on the website')}catch(e){toast(e.message,1)}$('#save').disabled=false}}
-
-async function viewList(key){const [title,col,fs,ak]=LIST[key];
- const load=async()=>{const s=await getDocs(collection(db,col));return s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.order??0)-(b.order??0))};
- let items=await load();
- const draw=()=>{const q=($('#q')?.value||'').toLowerCase();
-  $('#area').innerHTML=`<div class="tools"><input id="q" placeholder="Search…" value="${esc(q)}"><div class="sp"></div><button class="btn" id="add">+ Add ${title.replace(/s$/,'')}</button></div><div class="card"><table><tr><th>#</th><th>Title</th><th>Status</th><th></th></tr>`+
-  (items.filter(i=>JSON.stringify(i).toLowerCase().includes(q)).map((i,n)=>`<tr><td>${n+1}</td><td>${esc(i.title||i.name)}<div class="muted">${esc(i.tag||i.role||i.company||'')}</div></td><td><span class="chip ${i[ak]===false?'off':''}">${i[ak]===false?(ak==='approved'?'Hidden':'Inactive'):(ak==='approved'?'Published':'Active')}</span></td><td class="acts">
-  <button class="btn ghost sm" data-a="up" data-i="${i.id}">↑</button><button class="btn ghost sm" data-a="dn" data-i="${i.id}">↓</button><button class="btn ghost sm" data-a="tg" data-i="${i.id}">${i[ak]===false?'Enable':'Disable'}</button><button class="btn ghost sm" data-a="ed" data-i="${i.id}">Edit</button><button class="btn ghost sm" data-a="dup" data-i="${i.id}">Duplicate</button><button class="btn red sm" data-a="del" data-i="${i.id}">Delete</button></td></tr>`).join('')||`<tr><td colspan=4 class="empty">Nothing here yet. Add one, or use “Import current website content” on the Dashboard.</td></tr>`)+`</table></div>`;
-  $('#q').oninput=draw;$('#add').onclick=()=>edit();
-  $('#area').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>act(b.dataset.a,items.find(x=>x.id===b.dataset.i)))};
- const edit=(it)=>{const m=modal(`<h3>${it?'Edit':'Add'} ${title.replace(/s$/,'')}</h3><br>${formHtml(fs,it||{})}<div class="acts"><button class="btn" id="ok">Save</button><button class="btn ghost" id="no">Cancel</button></div>`);
-  wireUploads(m);$('#no').onclick=closeM;$('#ok').onclick=async()=>{const d=collect(fs,m);if(!d.title&&!d.name)return toast('Title is required',1);
-   try{if(it)await touch(`${col}/${it.id}`,d);else await addDoc(collection(db,col),{...d,[ak]:ak==='approved'?true:true,order:items.length,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});
-   closeM();toast('Saved');items=await load();draw()}catch(e){toast(e.message,1)}}};
- const act=async(a,it)=>{try{
-  if(a==='ed')return edit(it);
-  if(a==='del'){if(!confirmBox('Delete this item permanently?'))return;await deleteDoc(doc(db,col,it.id))}
-  if(a==='tg')await updateDoc(doc(db,col,it.id),{[ak]:it[ak]===false,updatedAt:serverTimestamp()});
-  if(a==='dup'){const {id,...r}=it;await addDoc(collection(db,col),{...r,title:(r.title||'')+(r.title?' (copy)':''),order:items.length,createdAt:serverTimestamp()})}
-  if(a==='up'||a==='dn'){const i=items.indexOf(it),j=a==='up'?i-1:i+1;if(j<0||j>=items.length)return;[items[i],items[j]]=[items[j],items[i]];await Promise.all(items.map((x,n)=>updateDoc(doc(db,col,x.id),{order:n})))}
-  items=await load();draw();toast('Done')}catch(e){toast(e.message,1)}};
- draw()}
-
-async function viewEnq(){const load=async()=>(await getDocs(collection(db,'enquiries'))).docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
- let items=await load();
- const draw=()=>{const q=($('#q')?.value||'').toLowerCase(),f=$('#f')?.value||'all',s=$('#s')?.value||'new';
-  let l=items.filter(i=>JSON.stringify([i.name,i.email,i.phone,i.message,i.company]).toLowerCase().includes(q)&&(f==='all'||(f==='unread')===!i.read));if(s==='old')l=[...l].reverse();
-  $('#area').innerHTML=`<div class="tools"><input id="q" placeholder="Search enquiries…" value="${esc(q)}"><select id="f"><option value="all">All</option><option value="unread" ${f==='unread'?'selected':''}>Unread</option><option value="read" ${f==='read'?'selected':''}>Read</option></select><select id="s"><option value="new">Newest first</option><option value="old" ${s==='old'?'selected':''}>Oldest first</option></select></div><div class="card"><table><tr><th>Name</th><th>Contact</th><th>Date</th><th>Status</th></tr>`+
-  (l.map(i=>`<tr class="${i.read?'':'un'}" data-i="${i.id}" style="cursor:pointer"><td>${esc(i.name)}<div class="muted">${esc(i.company||'')}</div></td><td>${esc(i.email)}<div class="muted">${esc(i.phone)}</div></td><td>${fmt(i.createdAt)}</td><td><span class="chip ${i.read?'off':''}">${i.read?'Read':'Unread'}</span></td></tr>`).join('')||`<tr><td colspan=4 class="empty">No enquiries</td></tr>`)+`</table></div>`;
-  ['q','f','s'].forEach(x=>$('#'+x).oninput=draw);
-  $('#area').querySelectorAll('tr[data-i]').forEach(r=>r.onclick=()=>open(items.find(x=>x.id===r.dataset.i)))};
- const open=async i=>{const m=modal(`<h3>${esc(i.name)}</h3><p class="muted">${esc(i.email)} · ${esc(i.phone)} · ${esc(i.company||'')}<br>${fmt(i.createdAt)} · ${esc(i.service||'')}</p><br><p style="white-space:pre-wrap">${esc(i.message)}</p><br><div class="acts"><button class="btn" id="rd">Mark as ${i.read?'unread':'read'}</button><button class="btn red" id="dl">Delete</button><button class="btn ghost" id="no">Close</button></div>`);
-  $('#no').onclick=closeM;if(!i.read){await updateDoc(doc(db,'enquiries',i.id),{read:true});i.read=true;badge()}
-  $('#rd').onclick=async()=>{await updateDoc(doc(db,'enquiries',i.id),{read:!i.read});closeM();items=await load();draw();badge()};
-  $('#dl').onclick=async()=>{if(!confirmBox('Delete this enquiry?'))return;await deleteDoc(doc(db,'enquiries',i.id));closeM();items=await load();draw();badge()}};
- draw()}
-
-async function viewMedia(){const load=async()=>(await getDocs(collection(db,'media'))).docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));let items=await load();
- const draw=()=>{const q=($('#q')?.value||'').toLowerCase();$('#area').innerHTML=`<div class="tools"><input id="q" placeholder="Search images…" value="${esc(q)}"><div class="sp"></div><label class="btn" style="margin:0">+ Upload<input id="up" type="file" accept="image/*" multiple hidden></label></div><div class="mg">`+
- (items.filter(i=>i.name.toLowerCase().includes(q)).map(i=>`<div class="card"><img src="${esc(i.url)}" loading="lazy"><div class="muted" style="margin:6px 0;word-break:break-all">${esc(i.name)}<br>${fmt(i.createdAt)}</div><div class="acts"><button class="btn ghost sm" data-c="${i.id}">Copy URL</button><button class="btn red sm" data-d="${i.id}">Delete</button></div></div>`).join('')||'<div class="empty">No images</div>')+`</div>`;
- $('#q').oninput=draw;$('#up').onchange=async e=>{for(const f of e.target.files)try{await uploadImg(f)}catch(x){toast(x.message,1)}items=await load();draw();toast('Uploaded')};
- $('#area').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(items.find(x=>x.id===b.dataset.c).url);toast('URL copied')});
- $('#area').querySelectorAll('[data-d]').forEach(b=>b.onclick=async()=>{const i=items.find(x=>x.id===b.dataset.d);if(!confirmBox('Delete image?'))return;try{await deleteObject(ref(st,i.path))}catch(e){}await deleteDoc(doc(db,'media',i.id));items=await load();draw()})};draw()}
-
-async function viewDash(){const cnt=async c=>(await getDocs(collection(db,c))).size;
- const [sv,pr,tm,rt,en]=await Promise.all(['services','projects','team','ratings','enquiries'].map(cnt));
- const th=(await getDoc(doc(db,'settings','theme'))).data()||{};
- const enq=(await getDocs(collection(db,'enquiries'))).docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)).slice(0,5);
- $('#area').innerHTML=`<div class="grid">${[['Total Projects',pr],['Total Services',sv],['Team Members',tm],['Testimonials',rt],['Enquiries',en],['Website Status',th.maintenance?'Maintenance':'Live']].map(([l,v])=>`<div class="card stat"><span class="muted">${l}</span><b>${v}</b></div>`).join('')}</div>
- <div class="card"><h3>Quick actions</h3><br><div class="acts"><a class="btn" href="#projects">Add project</a><a class="btn ghost" href="#services">Edit services</a><a class="btn ghost" href="#enquiries">View enquiries</a><a class="btn ghost" href="#media">Upload media</a><button class="btn ghost" id="seed">Import current website content</button></div><p class="muted" style="margin-top:10px">“Import” copies the existing hard-coded NEXORA content into the database (only fills collections that are empty).</p></div>
- <div class="card"><h3>Recent enquiries</h3><br>${enq.map(i=>`<p>${i.read?'':'● '}<b>${esc(i.name)}</b> — ${esc((i.message||'').slice(0,80))} <span class="muted">${fmt(i.createdAt)}</span></p>`).join('')||'<p class="muted">None yet</p>'}</div>`;
- $('#seed').onclick=async()=>{if(!confirmBox('Import default NEXORA content into empty collections?'))return;$('#seed').disabled=true;
-  try{for(const [p,d] of Object.entries(SEED.single))if(!(await getDoc(doc(db,...p.split('/')))).exists())await touch(p,d);
-   for(const [c,arr] of Object.entries(SEED.lists))if((await getDocs(collection(db,c))).empty)for(const [n,d] of arr.entries())await addDoc(collection(db,c),{...d,active:true,order:n,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});
-   toast('Imported');viewDash()}catch(e){toast(e.message,1)}}}
-
-async function badge(){try{const s=await getDocs(collection(db,'enquiries'));const n=s.docs.filter(d=>!d.data().read).length;$('#badge').textContent=n||''}catch(e){}}
-const route=async()=>{const k=location.hash.slice(1)||'dashboard';const lbl=MENU.find(m=>m[0]===k)?.[1]||'Dashboard';$('#title').textContent=lbl;
- document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.k===k));$('#side').classList.remove('open');$('#area').innerHTML='<div class="muted">Loading…</div>';
- try{if(SINGLE[k])await viewSingle(k);else if(LIST[k])await viewList(k);else if(k==='enquiries')await viewEnq();else if(k==='media')await viewMedia();else await viewDash()}catch(e){$('#area').innerHTML=`<div class="card err">${esc(e.message)}<br><span class="muted">Check your Firestore rules and that you are signed in as the admin.</span></div>`}};
-const start=()=>{$('#view').href=SITE_URL;
- $('#nav').innerHTML=MENU.map(([k,l])=>`<a data-k="${k}" href="#${k}">${l}</a>`).join('');
- $('#burger').onclick=()=>$('#side').classList.toggle('open');$('#bell').onclick=()=>location.hash='enquiries';
- addEventListener('hashchange',route);route();badge()};
-start();
-if(DEMO){const bn=document.createElement('div');bn.style.cssText='position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:#16213e;color:#e6c35c;border:1px solid #e6c35c55;padding:8px 14px;border-radius:999px;font:12px sans-serif;z-index:99';bn.textContent='Preview mode — sample data, changes are not saved';document.body.append(bn)}
-</script></body></html>
+// ---- Reviews (approve / hide / delete) ----
+async function loadReviews() {
+  const snap = await getDocs(query(collection(db, "reviews"), orderBy("createdAt", "desc")));
+  const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  $("rlist").innerHTML = rows.length ? rows.map(r => `
+    <div class="item"><div>
+      <h3>${esc(r.name || "Anonymous")} <span class="tag">${"★".repeat(r.rating || 0)}</span>
+        <span class="tag">${r.approved ? "Approved" : "Pending"}</span></h3>
+      <p>${esc(r.text)}</p></div>
+      <div class="actions">
+        <button class="btn ghost" data-toggle="${r.id}" data-state="${r.approved ? 1 : 0}">${r.approved ? "Hide" : "Approve"}</button>
+        <button class="btn danger" data-rdel="${r.id}">Delete</button>
+      </div></div>`).join("")
+    : `<div class="empty">No reviews yet.</div>`;
+}
+$("rlist").onclick = async e => {
+  const t = e.target.dataset;
+  if (t.toggle) { await updateDoc(doc(db, "reviews", t.toggle), { approved: t.state !== "1" }); loadReviews(); }
+  if (t.rdel && confirm("Delete this review?")) { await deleteDoc(doc(db, "reviews", t.rdel)); loadReviews(); }
+};
+</script>
+</body>
+</html>
