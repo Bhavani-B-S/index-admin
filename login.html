@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign in · NEXORA Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050912;--p:#0F1930;--p2:#0A1120;--l:rgba(148,168,210,.16);--b:#2F86FF;--g:#C6A15B;--t:#F3F6FC;--m:#8A96B3;--r:12px}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--t);font:14px/1.5 Inter,system-ui,sans-serif;display:grid;place-items:center;padding:20px;position:relative;overflow-x:hidden}
+body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+body::before{width:520px;height:520px;background:rgba(47,134,255,.22);top:-160px;left:-120px}
+body::after{width:420px;height:420px;background:rgba(198,161,91,.14);bottom:-140px;right:-100px}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--l) 1px,transparent 1px),linear-gradient(90deg,var(--l) 1px,transparent 1px);background-size:56px 56px;opacity:.22;-webkit-mask-image:radial-gradient(circle at 50% 40%,#000 0,transparent 70%);mask-image:radial-gradient(circle at 50% 40%,#000 0,transparent 70%)}
+.wrap{position:relative;z-index:1;width:min(400px,100%);animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.brand{text-align:center;margin-bottom:22px}
+.logo{font:700 26px 'Space Grotesk',sans-serif;letter-spacing:.5px}.logo span{color:var(--g)}
+.brand p{color:var(--m);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.card{background:linear-gradient(180deg,rgba(15,25,48,.82),rgba(10,17,32,.82));border:1px solid var(--l);border-radius:16px;padding:28px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 24px 60px -20px #000c,inset 0 1px 0 #ffffff0d}
+h1{font:700 22px 'Space Grotesk',sans-serif;margin-bottom:4px}
+.sub{color:var(--m);margin-bottom:22px}
+label{display:block;margin-bottom:16px;font-weight:500;color:var(--m);font-size:12px}
+.field{position:relative;margin-top:6px}
+input[type=email],input[type=password],input[type=text]{width:100%;background:var(--bg);border:1px solid var(--l);border-radius:10px;color:var(--t);padding:11px 12px;font:inherit;font-size:14px;transition:border-color .2s,box-shadow .2s}
+input::placeholder{color:#55617c}
+input:focus{outline:0;border-color:var(--b);box-shadow:0 0 0 3px rgba(47,134,255,.22)}
+.field input.pw{padding-right:62px}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--m);font:500 12px Inter,sans-serif;padding:6px 8px;border-radius:6px;cursor:pointer}
+.eye:hover{color:var(--t);background:#ffffff0d}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 20px;font-size:13px}
+.chk{display:flex;align-items:center;gap:8px;color:var(--m);margin:0;font-size:13px;font-weight:400;cursor:pointer}
+.chk input{width:16px;height:16px;accent-color:var(--b);margin:0}
+.link{background:none;border:0;color:var(--b);font:500 13px Inter,sans-serif;cursor:pointer;padding:0}
+.link:hover{text-decoration:underline}
+.btn{width:100%;background:linear-gradient(135deg,#2F86FF,#1f6fe0);color:#fff;border:0;border-radius:10px;padding:12px 16px;cursor:pointer;font:600 14px Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 8px 22px -8px rgba(47,134,255,.7)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px -8px rgba(47,134,255,.85)}
+.btn:active{transform:none}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.spin{width:15px;height:15px;border:2px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:none}
+.btn.load .spin{display:block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.msg{display:none;margin-bottom:16px;padding:10px 12px;border-radius:10px;font-size:13px;border:1px solid}
+.msg.err{display:block;color:#ff8a7a;background:rgba(231,76,60,.1);border-color:rgba(231,76,60,.35)}
+.msg.ok{display:block;color:#7fe0a8;background:rgba(46,204,113,.1);border-color:rgba(46,204,113,.35)}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.foot{text-align:center;margin-top:18px;color:var(--m);font-size:12px}
+.foot a{color:var(--m)}.foot a:hover{color:var(--t)}
+.secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:6px;font-size:11px;color:#6d7a96}
+.demo{display:none;margin-bottom:16px;text-align:center;font-size:12px;color:#e6c35c;background:rgba(198,161,91,.08);border:1px solid rgba(198,161,91,.3);padding:8px 10px;border-radius:10px}
+.hide{display:none!important}
+@media(max-width:420px){.card{padding:22px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="wrap">
+  <div class="brand">
+    <div class="logo">NEXORA <span>Admin</span></div>
+    <p>Content Management</p>
+  </div>
+
+  <div class="card" id="card">
+    <!-- Sign in -->
+    <form id="loginForm" novalidate>
+      <h1>Welcome back</h1>
+      <p class="sub">Sign in to manage your website.</p>
+      <div class="demo" id="demo">Preview mode — any email &amp; password will work</div>
+      <div class="msg" id="msg" role="alert"></div>
+
+      <label>Email
+        <div class="field"><input type="email" id="email" placeholder="admin@nexoradigisolutions.in" autocomplete="username" required autofocus></div>
+      </label>
+      <label>Password
+        <div class="field">
+          <input type="password" id="pw" class="pw" placeholder="••••••••" autocomplete="current-password" required>
+          <button type="button" class="eye" id="eye" aria-label="Show password">Show</button>
+        </div>
+      </label>
+
+      <div class="row">
+        <label class="chk"><input type="checkbox" id="remember" checked> Keep me signed in</label>
+        <button type="button" class="link" id="forgot">Forgot password?</button>
+      </div>
+
+      <button class="btn" id="go" type="submit"><span class="spin"></span><span id="goTxt">Sign in</span></button>
+      <div class="secure">🔒 Secured by Firebase Authentication</div>
+    </form>
+
+    <!-- Reset password -->
+    <form id="resetForm" class="hide" novalidate>
+      <h1>Reset password</h1>
+      <p class="sub">Enter your admin email and we'll send you a reset link.</p>
+      <div class="msg" id="rmsg" role="alert"></div>
+      <label>Email
+        <div class="field"><input type="email" id="remail" placeholder="admin@nexoradigisolutions.in" autocomplete="username"></div>
+      </label>
+      <button class="btn" id="rgo" type="submit"><span class="spin"></span><span>Send reset link</span></button>
+      <div class="foot"><button type="button" class="link" id="back">← Back to sign in</button></div>
+    </form>
+  </div>
+
+  <div class="foot">© <span id="yr"></span> NEXORA DIGI SOLUTIONS · <a href="index.html">Back to website</a></div>
+</div>
+
+<script type="module">
+/* ===== 1. PASTE THE SAME FIREBASE WEB CONFIG YOU USE IN admin.html ===== */
+const FILE_CFG={apiKey:"",authDomain:"",projectId:"",storageBucket:"",messagingSenderId:"",appId:""};
+const firebaseConfig=FILE_CFG.apiKey?FILE_CFG:JSON.parse(localStorage.getItem("nxcfg")||"{}");
+const DEMO=!(firebaseConfig.apiKey&&firebaseConfig.projectId);
+const ADMIN_URL="admin.html"; /* where to go after sign-in */
+
+const $=s=>document.querySelector(s);
+$('#yr').textContent=new Date().getFullYear();
+if(DEMO)$('#demo').style.display='block';
+
+/* ---- UI helpers ---- */
+const show=(el,type,text)=>{el.className='msg '+type;el.textContent=text};
+const clear=el=>{el.className='msg';el.textContent=''};
+const busy=(btn,on)=>{btn.disabled=on;btn.classList.toggle('load',on)};
+const fail=(el,text)=>{show(el,'err',text);const c=$('#card');c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake')};
+const NICE={
+ 'auth/invalid-credential':'Incorrect email or password.',
+ 'auth/wrong-password':'Incorrect email or password.',
+ 'auth/user-not-found':'Incorrect email or password.',
+ 'auth/invalid-email':'Please enter a valid email address.',
+ 'auth/user-disabled':'This account has been disabled.',
+ 'auth/too-many-requests':'Too many attempts. Please wait a moment and try again.',
+ 'auth/network-request-failed':'Network error. Check your connection and try again.'
+};
+const nice=e=>NICE[e?.code]||'Something went wrong. Please try again.';
+const validEmail=v=>/^\S+@\S+\.\S+$/.test(v);
+
+/* show / hide password */
+$('#eye').onclick=()=>{const p=$('#pw'),s=p.type==='password';p.type=s?'text':'password';$('#eye').textContent=s?'Hide':'Show';$('#eye').setAttribute('aria-label',s?'Hide password':'Show password')};
+
+/* switch between sign-in and reset */
+const swap=reset=>{$('#loginForm').classList.toggle('hide',reset);$('#resetForm').classList.toggle('hide',!reset);if(reset){$('#remail').value=$('#email').value;clear($('#rmsg'));$('#remail').focus()}else $('#email').focus()};
+$('#forgot').onclick=()=>swap(true);
+$('#back').onclick=()=>swap(false);
+
+/* ---- Auth backend (Firebase, or demo stub) ---- */
+let A;
+if(!DEMO){
+ const V='10.12.2',B='https://www.gstatic.com/firebasejs/'+V+'/';
+ const [app,auth]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js')]);
+ const a=auth.getAuth(app.initializeApp(firebaseConfig));
+ A={
+  onUser:cb=>auth.onAuthStateChanged(a,cb),
+  signIn:async(e,p,remember)=>{await auth.setPersistence(a,remember?auth.browserLocalPersistence:auth.browserSessionPersistence);return auth.signInWithEmailAndPassword(a,e,p)},
+  reset:e=>auth.sendPasswordResetEmail(a,e)
+ };
+}else{
+ A={
+  onUser:cb=>cb(sessionStorage.getItem('nxdemo')?{email:'demo'}:null),
+  signIn:async(e)=>{await new Promise(r=>setTimeout(r,500));sessionStorage.setItem('nxdemo',e)},
+  reset:async()=>{await new Promise(r=>setTimeout(r,500))}
+ };
+}
+
+/* already signed in? skip straight to the dashboard */
+A.onUser(u=>{if(u)location.replace(ADMIN_URL)});
+
+/* ---- Sign in ---- */
+$('#loginForm').addEventListener('submit',async ev=>{
+ ev.preventDefault();
+ const m=$('#msg'),email=$('#email').value.trim(),pw=$('#pw').value;
+ clear(m);
+ if(!validEmail(email))return fail(m,'Please enter a valid email address.');
+ if(!pw)return fail(m,'Please enter your password.');
+ busy($('#go'),true);$('#goTxt').textContent='Signing in…';
+ try{await A.signIn(email,pw,$('#remember').checked);$('#goTxt').textContent='Redirecting…';location.replace(ADMIN_URL)}
+ catch(e){fail(m,nice(e));busy($('#go'),false);$('#goTxt').textContent='Sign in';$('#pw').select()}
+});
+
+/* ---- Password reset ---- */
+$('#resetForm').addEventListener('submit',async ev=>{
+ ev.preventDefault();
+ const m=$('#rmsg'),email=$('#remail').value.trim();
+ clear(m);
+ if(!validEmail(email))return fail(m,'Please enter a valid email address.');
+ busy($('#rgo'),true);
+ try{await A.reset(email);show(m,'ok','If that email belongs to an admin account, a reset link is on its way.')}
+ catch(e){
+  /* don't reveal whether an account exists */
+  if(e?.code==='auth/user-not-found')show(m,'ok','If that email belongs to an admin account, a reset link is on its way.');
+  else fail(m,nice(e));
+ }
+ busy($('#rgo'),false);
+});
+</script>
+</body>
+</html>
